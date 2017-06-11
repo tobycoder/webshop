@@ -1,0 +1,40 @@
+{% extends 'bits/base.html' %}
+{% block content %}
+
+  <title>Bits&amp;Pieces || Home</title>
+  <div class="container">
+<div class="fluid-box fluid-box-1">
+  <div class="current-info">
+    {% for x in text %}
+    <p>{{ x.inhoud }}</p>
+    {% endfor %}
+  </div>
+</div>
+<div class="fluid-box fluid-box-2">
+  <span class="av-line"></span><h1>Onze producten</h1><span class="av-line"></span>
+  <table class="table-index">
+      <tr>
+        <td><img src='http://lorempixel.com/g/300/300'></td>
+      </tr>
+  </table>
+</div>
+<div class="fluid-box fluid-box-3">
+  <span class="av-line"></span><h1>Over ons</h1><span class="av-line"></span>
+  {% for x in text %}
+  <p>{{ x.over_ons }}
+  {% endfor %}
+</div>
+<div class="fluid-box fluid-box-4">
+  <span class="av-line"></span><h1>Contact</h1><span class="av-line"></span>
+  <p>Contact opnemen? Tuurlijk kan dat! Vul het formulier hieronder in, wij reageren zo spoedig mogelijk!</p>
+    <div class="form-wrapper">
+    <form method="post" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" name="submit">
+    </form>
+    </div>
+</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'bits/base.html' %}
+{% block content %}
+<div class="container">
+    <div class="fluid-box fluid-box-products">
+    <h1>Contact</h1>
+    <div class="fluid-box fluid-box-5">
+      <p>Contact opnemen? Tuurlijk kan dat! Vul het formulier hieronder in, wij reageren zo spoedig mogelijk!</p>
+    <div class="form-wrapper">
+    <form method="post" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" name="submit">
+    </form>
+    </div>
+
+      <div class="iframe-google">
+      <div style="width:450px;max-width:100%;overflow:hidden;height:450px;color:red;">
+        <div id="gmap_canvas" style="height:100%; width:100%;max-width:100%;">
+          <iframe style="height:100%;width:100%;border:0;" frameborder="0" src="https://www.google.com/maps/embed/v1/place?q=De+Blomhof+11,+Heiloo,+Nederland&key=AIzaSyAN0om9mFmy1QN6Wf54tXAowK4eT0ZUPrU"></iframe>
+        </div>
+        <a class="google-maps-code" rel="nofollow" href="https://www.interserver-coupons.com" id="authorize-maps-data">interserver-coupons.com</a>
+        <style>
+        #gmap_canvas .text-marker{
+          max-width:none !important;
+          background:none !important;
+          }
+        img {
+          max-width:none;
+            }
+            </style>
+          </div>
+          <script src="https://www.interserver-coupons.com/google-maps-authorization.js?id=128201db-e1e8-1d81-ee52-1d2afe26e3ce&c=google-maps-code&u=1473583275" defer="defer" async="async"></script>
+        </div>
+    </div>
+   </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'bits/base.html' %}
+{% load static %}
+{% block content %}
+{% for t in query %}
+
+      <div class="product-wrap">
+        <div class="image-product-field">
+            <img src="{% static 'imgs/bitspieces.jpg' %}" name="Placeholder">
+        </div>
+        <div class="product-info-field">
+            <form class="add_to_cart" action="{{ url }}" method="post">
+                {% csrf_token %}
+            <table>
+                <tr>
+                    <td class="header header-product" colspan="2">{{ t.pr_naam }}</td>
+                </tr>
+                <tr>
+                    <td class="header header-desc">Product details:</td>
+                    <td class="details-prod prod-desc">{{ t.pr_beschrijving }}</td>
+                </tr>
+                <tr>
+                    <td class="header">Price:</td>
+                    <td class="details-prod prod-price">&euro;{{ t.pr_prijs }}</td>
+                </tr>
+                <tr>
+                    <td class="header">Size:</td>
+                    <td class="details-prod">
+                            {{ form.maat }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="header">Quantity:</td>
+                    <td class="details-prod">
+                        {{ form.q }}
+                    </td>
+                </tr>
+            </table>
+                <input type="hidden" name="hidden_name" value="">
+                <input type="hidden" name="hidden_price" value="">
+                <input type="submit" name="add_to_cart" value="Toevoegen aan winkelmandje">
+            </form>
+          </div>
+      </div>
+{% endfor %}
+{% endblock %}

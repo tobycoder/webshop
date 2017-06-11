@@ -1,0 +1,59 @@
+{% load static %}
+<head>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+<div class="header-page">
+<header><a href="http://localhost:8012/bitsandpieces/over">Over ons</a> | <a href="#">Verzending</a> | <a href="#">Nieuw</a> | <a href="http://localhost:8012/bitsandpieces/guests">Gastenboek</a> | <a href="#">Cadeaubon</a> | <a href="#">Log in</a> </header>
+</div>
+
+<div class="banner-index">
+  <img class="logo-banner" src="http://bitsandpiecesjewelry.nl/incl/imgs/bitspieces.jpg" alt="Ons logo!" draggable="false">
+  <h3>Handmade just for you</h3>
+</div>
+<div class="navigation-wrap">
+<div class="hover_marmer">
+<ul class="nav">
+  <li><a href="/webshop/">Home &#8226;</a></li>
+	<li><a href="/webshop/shop/bracelets">Bracelets &#8226;</a>
+		<ul class="subli">
+			<li><a href="/webshop/shop/bracelets/leather">Leather</a></li>
+			<li><a href="/webshop/shop/bracelets/beads">Beads</a></li>
+		</ul>
+	</li>
+  <li><a href="/webshop/shop/kettingen">Necklaces &#8226;</a>
+		<ul class="subli">
+		 <li><a href="/webshop/shop/kettingen/sil_bal">Silver balled chains</a></li>
+		 <li><a href="/webshop/shop/kettingen/sil_chain">Silver cable chains</a></li>
+		 <li><a href="/webshop/shop/kettingen/leather">Leather</a></li>
+		</ul>
+  </li>
+  <li><a href="/webshop/new">What's New? &#8226;</a>
+		<ul class="subli">
+			<li><a href="/webshop/bracelets/new">Bracelets</a></li>
+			<li><a href="/webshop/kettingen/new">Necklaces</a></li>
+		</ul>
+  </li>
+  <li><a href="/giftcertificate">Gift Certificate &#8226;</a></li>
+  <li><a href="/webshop/contact">Contact us</a></li>
+</ul>
+</div>
+<ul class="sub nav">
+  <li><a href="/admin">Log in</a></li>
+  <li><a href="/cart">Cart <i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
+</ul>
+</div>
+
+{% block content %}
+{% endblock %}
+{% block products %}
+{% endblock %}
+<div class="footer"><p>
+    <a href="admin/">Admin</a> |
+    <a href="#">Verzending</a> |
+    <a href="#">Algemene informatie</a> |
+    <a href="http://www.ifelse-development.com">IFELSE development</a>
+  </p>
+</div>
+</body>

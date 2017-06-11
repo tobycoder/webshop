@@ -1,0 +1,29 @@
+{% extends 'bits/base.html' %}
+{% block products %}
+<div class="fluid-box fluid-box-products">
+              <h1>Producten</h1>
+
+               <div class="col-md-4">
+                   {% for x in query %}
+                         <div class="product-form">
+                             <div class="inner-product-form">
+                              <img src="" class="img-responsive"/><br />
+                             <h4 class="text-info"><a href="{% url 'get_product_solo' product_item=x.id %}">{{ x.pr_naam }}</a></h4>
+                             <h4 class="text-danger">€{{ x.pr_prijs }}</h4>
+                             </div>
+                         </div>
+                   {% endfor %}
+                                  </div>
+    <div class="wrap-product-list">
+                   {% for t in query_all %}
+                    <div class="product-list">
+                        <div class="info-box">
+                            <h1><a href="{% url 'get_product_solo' product_item=t.id %}">{{ t.pr_naam }}</a></h1>
+                        </div>
+                        <div class="price-box">€{{ t.pr_prijs }}</div>
+                    </div>
+                   {% endfor %}
+              <div style="clear:both"></div>
+            </div>
+        </div>
+{% endblock %}

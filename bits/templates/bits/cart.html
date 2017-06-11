@@ -1,0 +1,52 @@
+{% extends 'bits/base.html' %}
+{% block content %}
+<div class="table-responsive">
+     <table class="table table-bordered" style="text-align: left;">
+          <tr>
+               <th width="40%">Item Name</th>
+               <th width="10%">Quantity</th>
+               <th width="20%">Price</th>
+                <th width="10%">Size</th>
+               <th width="5%">Action</th>
+          </tr>
+        {% for t in query %}
+          <tr class="cart-content">
+                <td>{{ t.name }}</td>
+                <td>{{ t.q }}</td>
+                <td>&euro; {{ t.price }}</td>
+                <td>{{ t.maat }}</td>
+                <td><a href=""><span class="text-danger">Remove</span></a></td>
+          </tr>
+        {% endfor %}
+     </table>
+
+    <div class="tr-wrap">
+        <table class="total-table">
+          <tr class="total-headers">
+               <td colspan="3" align="right">Subtotal</td>
+               <td align="right">&euro; {{ subtotal }}</td>
+               <td></td>
+          </tr>
+         <tr class="total-headers">
+               <td colspan="3" align="right">Btw</td>
+               <td align="right">&euro; {{ btw }}</td>
+               <td></td>
+          </tr>
+         <tr class="total-headers">
+               <td colspan="3" align="right">Total</td>
+               <td align="right">&euro;{{ total }}</td>
+               <td></td>
+          </tr>
+            <tr>
+                <td>
+                    <form class="form-submit-to" action="../checkout/index.php" method="get">
+                        <input type="hidden" name="prissa" value="<?php echo $all_total; ?>">
+                        <input type="submit" name="submit" value="Ga door">
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+{% endblock %}
