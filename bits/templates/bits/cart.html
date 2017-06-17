@@ -9,12 +9,12 @@
                 <th width="10%">Size</th>
                <th width="5%">Action</th>
           </tr>
-        {% for t in query %}
+        {% for item in cart %}
           <tr class="cart-content">
-                <td>{{ t.name }}</td>
-                <td>{{ t.q }}</td>
-                <td>&euro; {{ t.price }}</td>
-                <td>{{ t.maat }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.q }}</td>
+                <td>&euro; {{ item.price }}</td>
+                <td>{{ item.maat }}</td>
                 <td><a href=""><span class="text-danger">Remove</span></a></td>
           </tr>
         {% endfor %}

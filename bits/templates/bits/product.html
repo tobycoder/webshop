@@ -8,7 +8,7 @@
                          <div class="product-form">
                              <div class="inner-product-form">
                               <img src="" class="img-responsive"/><br />
-                             <h4 class="text-info"><a href="{% url 'get_product_solo' product_item=x.id %}">{{ x.pr_naam }}</a></h4>
+                             <h4 class="text-info"><a href="{% url 'bits:get_product_solo' product_item=x.id %}">{{ x.pr_naam }}</a></h4>
                              <h4 class="text-danger">€{{ x.pr_prijs }}</h4>
                              </div>
                          </div>
@@ -18,7 +18,7 @@
                    {% for t in query_all %}
                     <div class="product-list">
                         <div class="info-box">
-                            <h1><a href="{% url 'get_product_solo' product_item=t.id %}">{{ t.pr_naam }}</a></h1>
+                            <h1><a href="{% url 'bits:get_product_solo' product_item=t.id %}">{{ t.pr_naam }}</a></h1>
                         </div>
                         <div class="price-box">€{{ t.pr_prijs }}</div>
                     </div>

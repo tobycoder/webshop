@@ -1,7 +1,7 @@
 from django.shortcuts import render, reverse, redirect
 from django.http import HttpResponseRedirect, HttpResponse
-from .models import bp_pages, bp_products, bp_users, ContactModel, ShopCart
-from .forms import ContactForm, ShoppingForm
+from .models import bp_pages, bp_products, bp_users, ContactModel
+from .forms import ContactForm
 from django.db.models import Sum, F
 from django.template.loader import get_template, render_to_string
 from django.template import Template, Context
@@ -39,14 +39,10 @@ def get_product_solo(request, product_item):
     if request.method == 'POST':
         form = ShoppingForm(request.POST)
         if form.is_valid():
-            url = reverse('bits:cart_overview')
-            obj = ShopCart()
-            obj.q = form.cleaned_data['q']
-            nameobject = bp_products.objects.get(id=product_item)
-            obj.name = nameobject.pr_naam
-            obj.maat = form.cleaned_data['maat']
-            obj.price = nameobject.pr_prijs
-            obj.save()
+            maat = form.cleaned_data['maat']
+            q = form.cleaned_data['q']
+            pr_id = product_item
+            url = reverse('bits:add_to_cart', args=[int(pr_id), maat, q])
             return HttpResponseRedirect(url)
     else :
         form = ShoppingForm()
@@ -62,12 +58,6 @@ def contact_request(request):
             obj.email = form.cleaned_data['email']
             obj.text = form.cleaned_data['text']
             obj.save()
-
+    else:
+        form = ContactForm()
     return render(request, 'bits/contact.html', {'form': form})
-
-def cart_overview(request):
-    query = ShopCart.objects.all()
-    subtotal = ShopCart.objects.aggregate(subtotaal=Sum(F('price') * F('q')))['subtotaal']
-    btw = int(subtotal) * 0.21
-    total = int(subtotal) + int(btw)
-    return render(request, 'bits/cart.html', context=locals())

@@ -9,6 +9,10 @@ class bp_pages(models.Model):
     inhoud = models.TextField()
     over_ons = models.TextField()
 
+    class Meta:
+        verbose_name = 'Pagina'
+        verbose_name_plural = 'Paginas'
+
 class bp_products(models.Model):
     pr_naam = models.CharField(max_length=200)
     pr_beschrijving = models.TextField()
@@ -22,6 +26,10 @@ class bp_products(models.Model):
     def __unicode__(self):
        return self.pr_naam
 
+    class Meta:
+        verbose_name = 'Product'
+        verbose_name_plural = 'Producten'
+
 class bp_users(models.Model):
     voornaam = models.CharField(max_length=200)
     achternaam = models.CharField(max_length=200)
@@ -32,6 +40,11 @@ class bp_users(models.Model):
     username = models.CharField(max_length=200)
     password = models.CharField(max_length=200)
 
+
+    class Meta:
+        verbose_name = 'Gebruikers'
+        verbose_name_plural = 'Gebruikers'
+
 class ContactModel(models.Model):
     voornaam = models.CharField(max_length=200)
     email = models.CharField(max_length=200)
@@ -40,8 +53,8 @@ class ContactModel(models.Model):
     def __unicode__(self):
         return self.onderwerp
 
-class ShopCart(models.Model):
-    name = models.CharField(max_length=200)
-    q = models.IntegerField()
-    maat = models.CharField(max_length=200)
-    price = models.IntegerField()
+    class Meta:
+        verbose_name = 'Contactformulier'
+        verbose_name_plural = 'Contactformulier'
+
+

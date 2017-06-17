@@ -6,7 +6,6 @@ admin.autodiscover()
 app_name = 'bits'
 urlpatterns = [
     url(r'^$', views.get_index, name='get_index'),
-    url(r'^cart/$', views.cart_overview, name='cart_overview'),
     url(r'^shop/(?P<shop_item>[^/?]+)/$', views.get_product, name='get_product'),
     url(r'^shop/(?P<shop_item>[^/?]+)/(?P<shop_subitem>[^/?]+)/$', views.get_product_by_sub, name='get_product_by_sub'),
     url(r'^product/(?P<product_item>[^/?]+)/$', views.get_product_solo, name='get_product_solo'),
