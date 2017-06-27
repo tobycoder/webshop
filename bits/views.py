@@ -1,7 +1,7 @@
 from django.shortcuts import render, reverse, redirect
 from django.http import HttpResponseRedirect, HttpResponse
 from .models import bp_pages, bp_products, bp_users, ContactModel
-from .forms import ContactForm
+from .forms import ContactForm, ShoppingForm
 from django.db.models import Sum, F
 from django.template.loader import get_template, render_to_string
 from django.template import Template, Context
@@ -39,14 +39,32 @@ def get_product_solo(request, product_item):
     if request.method == 'POST':
         form = ShoppingForm(request.POST)
         if form.is_valid():
-            maat = form.cleaned_data['maat']
-            q = form.cleaned_data['q']
+            maten = form.cleaned_data['maten']
+            quantity = form.cleaned_data['quantity']
             pr_id = product_item
-            url = reverse('bits:add_to_cart', args=[int(pr_id), maat, q])
+            price = query.values('pr_prijs')
+            url = reverse('bits:add_to_cart', args=[maten, quantity, pr_id, price['pr_price']])
             return HttpResponseRedirect(url)
     else :
         form = ShoppingForm()
     return render(request, 'bits/solo.html', {'query': query, 'form': form})
+
+def add_to_cart(request, id, maten, quantity, price):
+    try:
+        cart = request.session.get('cart', {
+            'pr_id': id,
+            'pr_prijs': price,
+            'quantity': quantity,
+            'maat': maten,
+        })
+        request.session['cart'] = cart
+        return HttpResponseRedirect(reverse('view_cart'))
+    except:
+        return HttpResponse('losers')
+
+def view_cart(request):
+    cart = request.session.get('cart')
+    return HttpResponse(cart)
 
 def contact_request(request):
     if request.method == 'POST':

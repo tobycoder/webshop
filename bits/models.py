@@ -50,6 +50,7 @@ class ContactModel(models.Model):
     email = models.CharField(max_length=200)
     onderwerp = models.CharField(max_length=200)
     text = models.TextField()
+
     def __unicode__(self):
         return self.onderwerp
 

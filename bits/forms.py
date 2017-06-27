@@ -8,3 +8,7 @@ class ContactForm(forms.ModelForm):
     class Meta:
         model = ContactModel
         fields = ('voornaam', 'email', 'onderwerp', 'text')
+
+class ShoppingForm(forms.Form):
+    maten = forms.ChoiceField(choices=MATEN)
+    quantity = forms.IntegerField()

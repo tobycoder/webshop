@@ -12,4 +12,5 @@ urlpatterns = [
     url(r'^(?P<shop_item>[^/?]+)/new/$', views.get_product_by_new, name='get_product_by_new'),
     url(r'^new/$', views.get_product_by_new_solo, name='get_product_by_new'),
     url(r'^contact/$', views.contact_request, name='contact'),
+    url(r'^cart/add-to-cart/(?P<maten>[^/?]+)/(?P<quantity>[0-9]+)/(?P<id>[^/?]+)/(?P<price>[^/?]+)$', views.add_to_cart, name='add_to_cart'),
 ]
