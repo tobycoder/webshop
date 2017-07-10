@@ -36,34 +36,39 @@ def get_product_by_new_solo(request):
 
 def get_product_solo(request, product_item):
     query = bp_products.objects.filter(id=product_item)
+    query_naam = bp_products.objects.values_list('pr_naam', flat=True).get(id=product_item)
+    query_prijs = bp_products.objects.values_list('pr_prijs', flat=True).get(id=product_item)
     if request.method == 'POST':
         form = ShoppingForm(request.POST)
         if form.is_valid():
-            maten = form.cleaned_data['maten']
-            quantity = form.cleaned_data['quantity']
-            pr_id = product_item
-            price = query.values('pr_prijs')
-            url = reverse('bits:add_to_cart', args=[maten, quantity, pr_id, price['pr_price']])
+            results = form.cleaned_data
+            cart = {
+                'maten': str(results['maat']),
+                'quantity': int(results['quantity']),
+                'price': int(results['pr_prijs']),
+                'naam': str(results['pr_naam']),
+            }
+
+            request.session['cart'] = cart
+            url = reverse('bits:add_to_cart')
             return HttpResponseRedirect(url)
     else :
-        form = ShoppingForm()
+        form = ShoppingForm(initial={'pr_prijs': query_prijs, 'pr_naam': query_naam})
     return render(request, 'bits/solo.html', {'query': query, 'form': form})
 
-def add_to_cart(request, id, maten, quantity, price):
-    try:
-        cart = request.session.get('cart', {
-            'pr_id': id,
-            'pr_prijs': price,
-            'quantity': quantity,
-            'maat': maten,
-        })
-        request.session['cart'] = cart
-        return HttpResponseRedirect(reverse('view_cart'))
-    except:
-        return HttpResponse('losers')
+def add_to_cart(request):
+    if request.session.has_key('cart'):
+        cart = request.session['cart']
+        for x, y in cart.items():
+            return HttpResponse(x + y)
+            continue
+
+
+    else:
+        return HttpResponse('NO AINSAF')
 
 def view_cart(request):
-    cart = request.session.get('cart')
+
     return HttpResponse(cart)
 
 def contact_request(request):
