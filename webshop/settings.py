@@ -26,7 +26,7 @@ SECRET_KEY = ')9l^x!yi1d+t0$+93sf1wlkz7*5(t@#q8t05krvc+-ssr^8(vc'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+CART_PRODUCT_MODEL = 'bits.models.bp_products'
 
 # Application definition
 
@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bits',
-    'cart',
+    'carton',
 ]
 
 MIDDLEWARE = [
@@ -115,6 +115,9 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+MEDIA_URL = '/static/media/'
+MEDIA_ROOT = '/home/toby/webshop/bits/static/media/'
 
 DEFAULT_FROM_EMAIL = 'floris.antiblok@gmail.com'
 EMAIL_HOST_USER = 'floris.antiblok@gmail.com'
