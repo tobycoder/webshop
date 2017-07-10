@@ -116,15 +116,18 @@ USE_L10N = True
 
 USE_TZ = True
 
-MEDIA_URL = '/static/media/'
-MEDIA_ROOT = '/home/toby/webshop/bits/static/media/'
 
 DEFAULT_FROM_EMAIL = 'floris.antiblok@gmail.com'
 EMAIL_HOST_USER = 'floris.antiblok@gmail.com'
 EMAIL_HOST_PASSWORD = 'ilgddd2309'
 EMAIL_USE_TLS = False
 EMAIL_PORT = 1025
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/home/toby/webshop/bits/static/'
+
+MEDIA_URL = '/static/media/'
+MEDIA_ROOT = '/home/toby/webshop/bits/static/media/'
