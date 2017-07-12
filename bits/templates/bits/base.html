@@ -5,7 +5,7 @@
 </head>
 <body>
 <div class="header-page">
-<header><a href="http://localhost:8012/bitsandpieces/over">Over ons</a> | <a href="#">Verzending</a> | <a href="#">Nieuw</a> | <a href="http://localhost:8012/bitsandpieces/guests">Gastenboek</a> | <a href="#">Cadeaubon</a> | <a href="#">Log in</a> </header>
+    <header>{% if request.session.username %}<span class="greeting" style="display: block; background: black; text-align: left; color: white; font-size: 20px;">Welkom {{ request.session.username }}</span>{% endif %}<a href="http://localhost:8012/bitsandpieces/over">Over ons</a> | <a href="#">Verzending</a> | <a href="#">Nieuw</a> | <a href="http://localhost:8012/bitsandpieces/guests">Gastenboek</a> | <a href="#">Cadeaubon</a> | <a href="#">Log in</a> </header>
 </div>
 
 <div class="banner-index">
@@ -40,8 +40,12 @@
 </ul>
 </div>
 <ul class="sub nav">
-  <li><a href="/admin">Log in</a></li>
-  <li><a href="/cart">Cart <i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
+    {% if 'username' in request.session %}
+  <li><a href="/webshop/logout">Log uit</a></li>
+    {% else %}
+  <li><a href="/webshop/login">Log in</a></li>
+    {% endif %}
+  <li><a href="/webshop/cart/add-to-cart">Cart <i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
 </ul>
 </div>
 

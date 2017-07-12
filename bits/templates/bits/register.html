@@ -1,0 +1,29 @@
+{% extends 'bits/base.html' %}
+{% block content %}
+<style>
+        input[type=text], input[type=password], input[type=number] {
+    width: 500px;
+    height: 50px;
+    }
+
+</style>
+<div class="container">
+    <div class="fluid-box fluid-box-products">
+    <h1>Registreer</h1>
+    <div class="fluid-box fluid-box-5">
+<p>Registreren bij Bits&Pieces</p>
+        {% if message %}
+        {{ message }}
+        {% endif %}
+        <div class="form-wrapper">
+    <form method="post" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" name="submit">
+    </form>
+    </div>
+    </div>
+   </div>
+  </div>
+
+{% endblock %}

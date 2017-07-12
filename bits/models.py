@@ -56,6 +56,9 @@ class bp_users(models.Model):
     username = models.CharField(max_length=200)
     password = models.CharField(max_length=200)
 
+    def __unicode__(self):
+       return self.voornaam
+
 
     class Meta:
         verbose_name = 'Gebruikers'

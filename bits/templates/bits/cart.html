@@ -1,52 +1,42 @@
 {% extends 'bits/base.html' %}
 {% block content %}
 {% load get_item %}
+<style>
+    th {
+    font-size: 30px;
+    }
 
+    .table-responsive{
+    width: 50%;
+    margin: auto;
+    }
+</style>
 <div class="table-responsive">
-     <table class="table table-bordered" style="text-align: left;">
+     <table class="table table-bordered" style="text-align: left; margin: auto">
           <tr>
-               <th width="40%">Item Name</th>
+               <th width="20%">Item Name</th>
                <th width="10%">Quantity</th>
-               <th width="20%">Price</th>
+               <th width="10%">Price</th>
                 <th width="10%">Size</th>
                <th width="5%">Action</th>
           </tr>
+         {% if cart.count != 0 %}
+         {% for item in cart %}
           <tr class="cart-content">
-                <td>{{ cart|get_item:'pr_naam' }}</td>
-                <td>{{ cart|get_item:'quantity' }}</td>
-                <td>{{ cart|get_item:'pr_prijs' }}</td>
-                <td>{{ cart|get_item:'maat' }}</td>
-                <td><a href=""><span class="text-danger">Remove</span></a></td>
+                <td>{{ item.product.pr_naam }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.product.pr_prijs }}</td>
+                <td>{{ item.maat }}</td>
+                <td><a href="{% url 'bits:deleterow' product_item=item.product.id %}"><span class="text-danger">Remove</span></a></td>
           </tr>
+         {% endfor %}
+         {% else %}
+         <tr>
+             <td colspan="5" style="text-align: center; font-size: 30px;">Geen producten!</td>
+         </tr>
+         {% endif %}
      </table>
 
-    <div class="tr-wrap">
-        <table class="total-table">
-          <tr class="total-headers">
-               <td colspan="3" align="right">Subtotal</td>
-               <td align="right">&euro; {{ subtotal }}</td>
-               <td></td>
-          </tr>
-         <tr class="total-headers">
-               <td colspan="3" align="right">Btw</td>
-               <td align="right">&euro; {{ btw }}</td>
-               <td></td>
-          </tr>
-         <tr class="total-headers">
-               <td colspan="3" align="right">Total</td>
-               <td align="right">&euro;{{ total }}</td>
-               <td></td>
-          </tr>
-            <tr>
-                <td>
-                    <form class="form-submit-to" action="../checkout/index.php" method="get">
-                        <input type="hidden" name="prissa" value="<?php echo $all_total; ?>">
-                        <input type="submit" name="submit" value="Ga door">
-                    </form>
-                </td>
-            </tr>
-        </table>
-    </div>
 
 </div>
 {% endblock %}

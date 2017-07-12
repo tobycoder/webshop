@@ -1,5 +1,5 @@
 from django import forms
-from .models import ContactModel, bp_products
+from .models import ContactModel, bp_products, bp_users
 
 MATEN = (('s', 'S - 15cm-16cm'),('m', 'M - 16.5cm-18cm'), ('l', 'L - 18cm-20cm'), ('xl', 'XL - 20cm-22cm'))
 
@@ -18,3 +18,21 @@ class ShoppingForm(forms.ModelForm):
     class Meta:
         model = bp_products
         fields = ['pr_prijs', 'pr_naam']
+
+class Login(forms.ModelForm):
+
+    class Meta:
+        model = bp_users
+        fields = ['username', 'password']
+        widgets = {
+            'password': forms.PasswordInput(),
+        }
+
+class Registreren(forms.ModelForm):
+
+    class Meta:
+        model = bp_users
+        fields = "__all__"
+        widgets = {
+            'password': forms.PasswordInput(),
+        }
