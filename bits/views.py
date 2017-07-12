@@ -42,13 +42,7 @@ def get_product_solo(request, product_item):
         form = ShoppingForm(request.POST)
         if form.is_valid():
             results = form.cleaned_data
-            cart= request.session.get('cart', {
-                'maten': str(results['maat']),
-                'quantity': int(results['quantity']),
-                'price': int(results['pr_prijs']),
-                'naam': str(results['pr_naam']),
-            })
-
+            cart = request.session.get('cart', results)
             request.session['cart'] = cart
             url = reverse('bits:add_to_cart')
             return HttpResponseRedirect(url)
@@ -59,7 +53,10 @@ def get_product_solo(request, product_item):
 def add_to_cart(request):
     if request.session.has_key('cart'):
         cart = request.session['cart']
-        return HttpResponse(cart.iteritems())
+        subtotal = int(cart.get('pr_prijs'))
+        btw = subtotal * 0.21
+        total = subtotal * 1.21
+        return render(request, 'bits/cart.html', context=locals())
 
     else:
         return HttpResponse('NO AINSAF')

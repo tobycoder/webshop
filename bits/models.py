@@ -35,7 +35,7 @@ class bp_products(models.Model):
     pr_cat = models.CharField(max_length=200, choices=CAT)
     pr_subcat= models.CharField(max_length=200, choices=SUBCAT)
     pr_prijs = models.IntegerField()
-    file = models.FileField(upload_to='document/%Y/')
+    file = models.ImageField()
     datestamp = models.DateTimeField(auto_now_add=True)
     new = models.CharField(max_length=50, choices=NEW)
 

@@ -1,5 +1,7 @@
 {% extends 'bits/base.html' %}
 {% block content %}
+{% load get_item %}
+
 <div class="table-responsive">
      <table class="table table-bordered" style="text-align: left;">
           <tr>
@@ -9,15 +11,13 @@
                 <th width="10%">Size</th>
                <th width="5%">Action</th>
           </tr>
-        {% for item in cart %}
           <tr class="cart-content">
-                <td>{{ item.name }}</td>
-                <td>{{ item.q }}</td>
-                <td>&euro; {{ item.price }}</td>
-                <td>{{ item.maat }}</td>
+                <td>{{ cart|get_item:'pr_naam' }}</td>
+                <td>{{ cart|get_item:'quantity' }}</td>
+                <td>{{ cart|get_item:'pr_prijs' }}</td>
+                <td>{{ cart|get_item:'maat' }}</td>
                 <td><a href=""><span class="text-danger">Remove</span></a></td>
           </tr>
-        {% endfor %}
      </table>
 
     <div class="tr-wrap">

@@ -15,7 +15,4 @@ urlpatterns = [
     url(r'^contact/$', views.contact_request, name='contact'),
     url(r'^cart/$', views.view_cart, name='view_cart'),
     url(r'^cart/add-to-cart/$', views.add_to_cart, name='add_to_cart'),
-]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
