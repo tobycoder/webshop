@@ -1,7 +1,8 @@
-from django.conf.urls import url, include
+from django.conf.urls import url
+from django.conf.urls.static import static
 from django.contrib import admin
 from . import views
-
+from django.conf import settings
 admin.autodiscover()
 app_name = 'bits'
 urlpatterns = [
@@ -15,3 +16,6 @@ urlpatterns = [
     url(r'^cart/$', views.view_cart, name='view_cart'),
     url(r'^cart/add-to-cart/$', views.add_to_cart, name='add_to_cart'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

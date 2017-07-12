@@ -126,8 +126,7 @@ EMAIL_PORT = 1025
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-STATIC_URL = '/static/media/'
-STATIC_ROOT = '/home/toby/webshop/bits/static/'
-
-MEDIA_URL = 'media/'
-MEDIA_ROOT = '/home/toby/webshop/bits/static/media/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
